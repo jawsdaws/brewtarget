@@ -26,6 +26,8 @@
 #include <QString>
 #include <QBrush>
 #include <QPen>
+#include <QScreen>
+
 class QPaintEvent;
 class QMouseEvent;
 
@@ -43,7 +45,7 @@ public:
    Q_PROPERTY( double value READ value WRITE setValue )
    
    double value() const { return _val; }
-   
+
    //! \brief Set the background brush for the widget.
    void setBackgroundBrush( QBrush const& brush );
    //! \brief Set the brush for the preffered range.
@@ -123,6 +125,7 @@ private:
    QPen _prefRangePen;
    QBrush _markerBrush;
    bool _markerTextIsValue;
+   double _dpi;
 };
 
 #endif /*RANGEDSLIDER_H*/

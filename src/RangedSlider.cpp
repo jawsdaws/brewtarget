@@ -53,6 +53,8 @@ RangedSlider::RangedSlider(QWidget* parent)
      _markerBrush(QColor(255,255,255)),
      _markerTextIsValue(false)
 {
+   _dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+   //qDebug() << _dpi;
    setMinimumSize( 32, 32 );
    setSizePolicy( QSizePolicy::MinimumExpanding, QSizePolicy::Fixed );
    
@@ -169,12 +171,12 @@ void RangedSlider::paintEvent(QPaintEvent* event)
    static const QFont textFont("Arial", 14, QFont::Black);
    static const QFontMetrics textFontMetrics(textFont);
    static const QPalette palette(QApplication::palette());
-   static const int indTextHeight=16;
-   static const int rectHeight = 16;
+   static const int indTextHeight= _dpi/6;
+   static const int rectHeight = _dpi/6;
    static const int indWidth   = 4;
    static const QColor fgRectColor(0,127,0);
    static const QColor textColor(0,127,0);
-   
+
    // Can't do this: want all the sliders to have exact same width
    //const int textWidth = textFontMetrics.width(_valText);
    static const int textWidth = textFontMetrics.width("1.000");
@@ -204,7 +206,7 @@ void RangedSlider::paintEvent(QPaintEvent* event)
       float markerTextLeft = qBound( 0.f, static_cast<float>(indLeft*(width()-textWidth-2)/rectWidth - markerTextRect.width()/2), static_cast<float>(width()-textWidth-2-markerTextRect.width()));
       painter.drawText(
          markerTextLeft, 0,
-         markerTextRect.width(), 16,
+         markerTextRect.width(), _dpi/6,
          Qt::AlignCenter | Qt::AlignBottom,
          _markerTextIsValue? _valText : _markerText
       );
@@ -271,5 +273,5 @@ void RangedSlider::paintEvent(QPaintEvent* event)
    // Draw the text.
    painter.setPen(textColor);
    painter.setFont(textFont);
-   painter.drawText( 0, 0, textWidth, 16, Qt::AlignRight | Qt::AlignVCenter, _valText );
+   painter.drawText( 0, 0, textWidth, _dpi/6, Qt::AlignRight | Qt::AlignVCenter, _valText );
 }
