@@ -263,13 +263,22 @@ void MainWindow::setupDialogs()
 // Configures the range widgets for the bubbles
 void MainWindow::setupRanges()
 {
-   const int min = QGuiApplication::primaryScreen()->logicalDotsPerInch()/3;
-   ibuGuSlider->setMinimumHeight(min);
-   styleRangeWidget_abv->setMinimumHeight(min);
-   styleRangeWidget_og->setMinimumHeight(min);
-   styleRangeWidget_fg->setMinimumHeight(min);
-   styleRangeWidget_ibu->setMinimumHeight(min);
-   styleRangeWidget_srm->setMinimumHeight(min);
+   const int hmin = QGuiApplication::primaryScreen()->logicalDotsPerInch()/3;
+   const int width = QGuiApplication::primaryScreen()->logicalDotsPerInch()*5.33333;
+
+   ibuGuSlider->setMinimumHeight(hmin);
+   styleRangeWidget_abv->setMinimumHeight(hmin);
+   styleRangeWidget_og->setMinimumHeight(hmin);
+   styleRangeWidget_fg->setMinimumHeight(hmin);
+   styleRangeWidget_ibu->setMinimumHeight(hmin);
+   styleRangeWidget_srm->setMinimumHeight(hmin);
+
+   ibuGuSlider->setMaximumWidth(width);
+   styleRangeWidget_abv->setMaximumWidth(width);
+   styleRangeWidget_og->setMaximumWidth(width);
+   styleRangeWidget_fg->setMaximumWidth(width);
+   styleRangeWidget_ibu->setMaximumWidth(width);
+   styleRangeWidget_srm->setMaximumWidth(width);
 
    styleRangeWidget_og->setRange(1.000, 1.120);
    styleRangeWidget_og->setPrecision(3);
