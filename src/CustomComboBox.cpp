@@ -32,7 +32,8 @@ CustomComboBox::CustomComboBox(QWidget* parent)
 
 void CustomComboBox::showPopup()
 {
-   view()->setFixedWidth(300);
+   //Testing??  Why is this here?
+   //view()->setFixedWidth(300);
    QComboBox::showPopup();
 }
 

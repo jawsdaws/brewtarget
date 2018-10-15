@@ -205,10 +205,11 @@ void MainWindow::setupCSS()
    goodSS = QString( "QLineEdit:read-only { color: #008800; background: %1 }").arg(wPalette.name());
    lowSS  = QString( "QLineEdit:read-only { color: #0000D0; background: %1 }").arg(wPalette.name());
    highSS = QString( "QLineEdit:read-only { color: #D00000; background: %1 }").arg(wPalette.name());
-   boldSS = QString( "QLineEdit:read-only { font: bold 12px; color: #000000; background: %1 }").arg(wPalette.name());
+   boldSS = QString( "QLineEdit:read-only { font-weight: bold; color: #000000; background: %1 }").arg(wPalette.name());
 
    // The bold style sheet doesn't change, so set it here once.
    lineEdit_boilSg->setStyleSheet(boldSS);
+
 }
 
 // Any dialogs should be initialized in here. That should include any initial
@@ -263,8 +264,8 @@ void MainWindow::setupDialogs()
 // Configures the range widgets for the bubbles
 void MainWindow::setupRanges()
 {
-   const int hmin = QGuiApplication::primaryScreen()->logicalDotsPerInch()/3;
-   const int width = QGuiApplication::primaryScreen()->logicalDotsPerInch()*5.33333;
+   const int hmin = DPI/3;
+   const int width = DPI*5.33333;
 
    ibuGuSlider->setMinimumHeight(hmin);
    styleRangeWidget_abv->setMinimumHeight(hmin);
@@ -622,6 +623,17 @@ void MainWindow::setupActivate()
 // here
 void MainWindow::setupTextEdit()
 {
+   //These lines help HiDPI displays work correctly.
+   //DPI is a member int that's calculated from the logical DPI.
+   lineEdit_batchSize->setMinimumWidth(DPI);
+   lineEdit_name->setMinimumWidth(DPI);
+   lineEdit_boilTime->setMinimumWidth(DPI);
+   lineEdit_boilSize->setMinimumWidth(DPI);
+   lineEdit_efficiency->setMinimumWidth(DPI);
+   lineEdit_calcBatchSize->setMinimumWidth(DPI);
+   lineEdit_calcBoilSize->setMinimumWidth(DPI);
+   lineEdit_boilSg->setMinimumWidth(DPI);
+
    connect( lineEdit_name, &QLineEdit::editingFinished, this, &MainWindow::updateRecipeName );
    connect( lineEdit_batchSize, &BtLineEdit::textModified, this, &MainWindow::updateRecipeBatchSize );
    connect( lineEdit_boilSize, &BtLineEdit::textModified, this, &MainWindow::updateRecipeBoilSize );

@@ -285,6 +285,7 @@ private slots:
    void showChanges(QMetaProperty* prop = 0);
 
 private:
+   const int DPI = QGuiApplication::primaryScreen()->logicalDotsPerInch();
    Recipe* recipeObs;
    Style* recStyle;
    Equipment* recEquip;
