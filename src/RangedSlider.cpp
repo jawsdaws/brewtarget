@@ -54,7 +54,6 @@ RangedSlider::RangedSlider(QWidget* parent)
      _markerTextIsValue(false)
 {
    _dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
-   //qDebug() << _dpi;
    setMinimumSize( 32, 32 );
    setSizePolicy( QSizePolicy::MinimumExpanding, QSizePolicy::Fixed );
    
@@ -153,8 +152,8 @@ void RangedSlider::setTickMarks( double primaryInterval, int secondaryTicks )
 
 QSize RangedSlider::sizeHint() const
 {
-   static const QSize hint(64,32);
    
+   static const QSize hint(_dpi/1.33333,_dpi/2.5);
    return hint;
 }
 
@@ -171,8 +170,8 @@ void RangedSlider::paintEvent(QPaintEvent* event)
    static const QFont textFont("Arial", 14, QFont::Black);
    static const QFontMetrics textFontMetrics(textFont);
    static const QPalette palette(QApplication::palette());
-   static const int indTextHeight= _dpi/6;
-   static const int rectHeight = _dpi/6;
+   static const int indTextHeight= _dpi/5;
+   static const int rectHeight = _dpi/5;
    static const int indWidth   = 4;
    static const QColor fgRectColor(0,127,0);
    static const QColor textColor(0,127,0);
@@ -206,7 +205,7 @@ void RangedSlider::paintEvent(QPaintEvent* event)
       float markerTextLeft = qBound( 0.f, static_cast<float>(indLeft*(width()-textWidth-2)/rectWidth - markerTextRect.width()/2), static_cast<float>(width()-textWidth-2-markerTextRect.width()));
       painter.drawText(
          markerTextLeft, 0,
-         markerTextRect.width(), _dpi/6,
+         markerTextRect.width(), _dpi/5,
          Qt::AlignCenter | Qt::AlignBottom,
          _markerTextIsValue? _valText : _markerText
       );
@@ -273,5 +272,5 @@ void RangedSlider::paintEvent(QPaintEvent* event)
    // Draw the text.
    painter.setPen(textColor);
    painter.setFont(textFont);
-   painter.drawText( 0, 0, textWidth, _dpi/6, Qt::AlignRight | Qt::AlignVCenter, _valText );
+   painter.drawText( 0, 0, textWidth, _dpi/5, Qt::AlignRight | Qt::AlignVCenter, _valText );
 }
