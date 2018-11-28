@@ -361,6 +361,8 @@ private:
    //! \brief Scroll to the given \c item in the currently visible item tree.
    void setTreeSelection(QModelIndex item);
 
+   //! \brief Set Dpi fixes
+   void setupDpiFixes();
    //! \brief Set the keyboard shortcuts.
    void setupShortCuts();
    //! \brief Set the context menus.

@@ -153,6 +153,9 @@ MainWindow::MainWindow(QWidget* parent)
    printer = new QPrinter;
    printer->setPageSize(QPrinter::Letter);
 
+   //apply all the DPI fixes after all the other setup is done.
+   setupDpiFixes();
+
    setupCSS();
    // initialize all of the dialog windows
    setupDialogs();
@@ -188,6 +191,51 @@ MainWindow::MainWindow(QWidget* parent)
    connect( &(Database::instance()), SIGNAL( deletedSignal(BrewNote*)), this, SLOT( closeBrewNote(BrewNote*)));
 }
 
+//Setup fixes for high pixel density(HiDPI) screens
+void MainWindow::setupDpiFixes()
+{
+    qDebug() << DPI;
+    QSize icon_size;
+    const int hmin = DPI/3;
+    const int width = DPI*5.33333;
+
+    //Icons in the Tab tree
+    icon_size.setHeight(DPI/6);
+    icon_size.setWidth(DPI/6);
+    tabWidget_Trees->setIconSize(icon_size);
+
+    //Line edits in the recipe tab
+    lineEdit_batchSize->setMinimumWidth(DPI);
+    lineEdit_name->setMinimumWidth(DPI);
+    lineEdit_boilTime->setMinimumWidth(DPI);
+    lineEdit_boilSize->setMinimumWidth(DPI);
+    lineEdit_efficiency->setMinimumWidth(DPI);
+    lineEdit_calcBatchSize->setMinimumWidth(DPI);
+    lineEdit_calcBoilSize->setMinimumWidth(DPI);
+    lineEdit_boilSg->setMinimumWidth(DPI);
+
+    //The range slider width and height
+    ibuGuSlider->setMinimumHeight(hmin);
+    styleRangeWidget_abv->setMinimumHeight(hmin);
+    styleRangeWidget_og->setMinimumHeight(hmin);
+    styleRangeWidget_fg->setMinimumHeight(hmin);
+    styleRangeWidget_ibu->setMinimumHeight(hmin);
+    styleRangeWidget_srm->setMinimumHeight(hmin);
+    ibuGuSlider->setMaximumWidth(width);
+    styleRangeWidget_abv->setMaximumWidth(width);
+    styleRangeWidget_og->setMaximumWidth(width);
+    styleRangeWidget_fg->setMaximumWidth(width);
+    styleRangeWidget_ibu->setMaximumWidth(width);
+    styleRangeWidget_srm->setMaximumWidth(width);
+
+    //Brewtarget logo above the tab tree
+    label_Brewtarget->setFixedHeight(DPI/1.5);
+    label_Brewtarget->setFixedWidth(DPI*3.33333);
+
+    //Icon size in the recipe tree
+    treeView_recipe->setIconSize(QSize(DPI/8,DPI/8));
+
+}
 // Setup the keyboard shortcuts
 void MainWindow::setupShortCuts()
 {
@@ -199,6 +247,7 @@ void MainWindow::setupShortCuts()
 // Any manipulation of CSS for the MainWindow should be in here
 void MainWindow::setupCSS()
 {
+
    // Different palettes for some text. This is all done via style sheets now.
    QColor wPalette = tabWidget_recipeView->palette().color(QPalette::Active,QPalette::Base);
 
@@ -264,23 +313,6 @@ void MainWindow::setupDialogs()
 // Configures the range widgets for the bubbles
 void MainWindow::setupRanges()
 {
-   const int hmin = DPI/3;
-   const int width = DPI*5.33333;
-
-   ibuGuSlider->setMinimumHeight(hmin);
-   styleRangeWidget_abv->setMinimumHeight(hmin);
-   styleRangeWidget_og->setMinimumHeight(hmin);
-   styleRangeWidget_fg->setMinimumHeight(hmin);
-   styleRangeWidget_ibu->setMinimumHeight(hmin);
-   styleRangeWidget_srm->setMinimumHeight(hmin);
-
-   ibuGuSlider->setMaximumWidth(width);
-   styleRangeWidget_abv->setMaximumWidth(width);
-   styleRangeWidget_og->setMaximumWidth(width);
-   styleRangeWidget_fg->setMaximumWidth(width);
-   styleRangeWidget_ibu->setMaximumWidth(width);
-   styleRangeWidget_srm->setMaximumWidth(width);
-
    styleRangeWidget_og->setRange(1.000, 1.120);
    styleRangeWidget_og->setPrecision(3);
    styleRangeWidget_og->setTickMarks(0.010, 2);
@@ -623,17 +655,6 @@ void MainWindow::setupActivate()
 // here
 void MainWindow::setupTextEdit()
 {
-   //These lines help HiDPI displays work correctly.
-   //DPI is a member int that's calculated from the logical DPI.
-   lineEdit_batchSize->setMinimumWidth(DPI);
-   lineEdit_name->setMinimumWidth(DPI);
-   lineEdit_boilTime->setMinimumWidth(DPI);
-   lineEdit_boilSize->setMinimumWidth(DPI);
-   lineEdit_efficiency->setMinimumWidth(DPI);
-   lineEdit_calcBatchSize->setMinimumWidth(DPI);
-   lineEdit_calcBoilSize->setMinimumWidth(DPI);
-   lineEdit_boilSg->setMinimumWidth(DPI);
-
    connect( lineEdit_name, &QLineEdit::editingFinished, this, &MainWindow::updateRecipeName );
    connect( lineEdit_batchSize, &BtLineEdit::textModified, this, &MainWindow::updateRecipeBatchSize );
    connect( lineEdit_boilSize, &BtLineEdit::textModified, this, &MainWindow::updateRecipeBoilSize );
