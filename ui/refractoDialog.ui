@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>434</width>
-    <height>256</height>
+    <width>1126</width>
+    <height>587</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@
            <widget class="BtDensityEdit" name="lineEdit_op">
             <property name="maximumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>16777215</height>
              </size>
             </property>
@@ -62,7 +62,7 @@
           <item row="1" column="0">
            <widget class="QLabel" name="label_inputOG">
             <property name="text">
-             <string>OG (20 C)</string>
+             <string>OG (&amp;20 C)</string>
             </property>
             <property name="buddy">
              <cstring>lineEdit_inputOG</cstring>
@@ -73,7 +73,7 @@
            <widget class="BtDensityEdit" name="lineEdit_inputOG">
             <property name="maximumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>16777215</height>
              </size>
             </property>
@@ -102,7 +102,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="label_cp">
             <property name="text">
-             <string>Current Plato</string>
+             <string>C&amp;urrent Plato</string>
             </property>
             <property name="buddy">
              <cstring>lineEdit_cp</cstring>
@@ -113,7 +113,7 @@
            <widget class="BtDensityEdit" name="lineEdit_cp">
             <property name="maximumSize">
              <size>
-              <width>128</width>
+              <width>256</width>
               <height>16777215</height>
              </size>
             </property>
@@ -184,7 +184,7 @@
        <widget class="BtGenericEdit" name="lineEdit_ri">
         <property name="maximumSize">
          <size>
-          <width>128</width>
+          <width>256</width>
           <height>16777215</height>
          </size>
         </property>
@@ -196,7 +196,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="label_sg">
         <property name="text">
-         <string>SG (20C)</string>
+         <string>S&amp;G (20C)</string>
         </property>
         <property name="buddy">
          <cstring>lineEdit_sg</cstring>
@@ -207,7 +207,7 @@
        <widget class="BtDensityEdit" name="lineEdit_sg">
         <property name="maximumSize">
          <size>
-          <width>128</width>
+          <width>256</width>
           <height>16777215</height>
          </size>
         </property>
@@ -233,7 +233,7 @@
        <widget class="BtGenericEdit" name="lineEdit_abv">
         <property name="maximumSize">
          <size>
-          <width>128</width>
+          <width>256</width>
           <height>16777215</height>
          </size>
         </property>
@@ -256,7 +256,7 @@
        <widget class="BtGenericEdit" name="lineEdit_abw">
         <property name="maximumSize">
          <size>
-          <width>128</width>
+          <width>256</width>
           <height>16777215</height>
          </size>
         </property>
@@ -268,7 +268,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_ri">
         <property name="text">
-         <string>Refractive Index</string>
+         <string>Refrac&amp;tive Index</string>
         </property>
         <property name="buddy">
          <cstring>lineEdit_ri</cstring>
@@ -278,7 +278,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_re">
         <property name="text">
-         <string>Real Extract (Plato)</string>
+         <string>Rea&amp;l Extract (Plato)</string>
         </property>
         <property name="buddy">
          <cstring>lineEdit_re</cstring>
@@ -289,7 +289,7 @@
        <widget class="BtDensityEdit" name="lineEdit_re">
         <property name="maximumSize">
          <size>
-          <width>128</width>
+          <width>256</width>
           <height>16777215</height>
          </size>
         </property>
@@ -304,7 +304,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_og">
         <property name="text">
-         <string>OG (20C)</string>
+         <string>OG (2&amp;0C)</string>
         </property>
         <property name="buddy">
          <cstring>lineEdit_og</cstring>
@@ -315,7 +315,7 @@
        <widget class="BtDensityEdit" name="lineEdit_og">
         <property name="maximumSize">
          <size>
-          <width>128</width>
+          <width>256</width>
           <height>16777215</height>
          </size>
         </property>

@@ -64,7 +64,7 @@ FermentableDialog::FermentableDialog(MainWindow* parent) :
 
 void FermentableDialog::doLayout()
 {
-   resize(800, 300);
+   resize(1000, 600);
    verticalLayout = new QVBoxLayout(this);
       tableWidget = new QTableView(this);
       horizontalLayout = new QHBoxLayout();
