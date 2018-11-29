@@ -20,6 +20,8 @@
 
 #include <QString>
 #include <QDebug>
+#include <QGuiApplication>
+#include <QScreen>
 #include "RefractoDialog.h"
 #include "Algorithms.h"
 #include "brewtarget.h"
@@ -31,6 +33,18 @@ RefractoDialog::RefractoDialog(QWidget* parent) : QDialog(parent)
    setupUi(this);
 
    connect( pushButton_calculate, &QAbstractButton::clicked, this, &RefractoDialog::calculate );
+
+   int DPI = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+
+   lineEdit_op->setMinimumWidth(DPI);
+   lineEdit_inputOG->setMinimumWidth(DPI);
+   lineEdit_cp->setMinimumWidth(DPI);
+   lineEdit_ri->setMinimumWidth(DPI);
+   lineEdit_og->setMinimumWidth(DPI);
+   lineEdit_sg->setMinimumWidth(DPI);
+   lineEdit_re->setMinimumWidth(DPI);
+   lineEdit_abv->setMinimumWidth(DPI);
+   lineEdit_abw->setMinimumWidth(DPI);
 }
 
 RefractoDialog::~RefractoDialog()
