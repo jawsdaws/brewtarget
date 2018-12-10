@@ -22,6 +22,7 @@
 #include <QWidget>
 #include <QDate>
 #include <QDebug>
+#include <QScreen>
 #include "BrewNoteWidget.h"
 #include "brewnote.h"
 #include "brewtarget.h"
@@ -31,6 +32,25 @@ BrewNoteWidget::BrewNoteWidget(QWidget *parent) : QWidget(parent)
    setupUi(this);
    bNoteObs = 0;
    setObjectName("BrewNoteWidget");
+
+   int dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+
+   toolBox_brewnote->setMinimumWidth(dpi*2.8);
+   lineEdit_SG->setMinimumWidth(dpi);
+   lineEdit_volIntoBK->setMinimumWidth(dpi);
+   lineEdit_strikeTemp->setMinimumWidth(dpi);
+   lineEdit_mashFinTemp->setMinimumWidth(dpi);
+   lineEdit_SG->setMinimumWidth(dpi);
+   lineEdit_volIntoBK->setMinimumWidth(dpi);
+   lineEdit_strikeTemp->setMinimumWidth(dpi);
+   lineEdit_mashFinTemp->setMinimumWidth(dpi);
+   lineEdit_OG->setMinimumWidth(dpi);
+   lineEdit_postBoilVol->setMinimumWidth(dpi);
+   lineEdit_volIntoFerm->setMinimumWidth(dpi);
+   lineEdit_pitchTemp->setMinimumWidth(dpi);
+   lineEdit_FG->setMinimumWidth(dpi);
+   lineEdit_finalVol->setMinimumWidth(dpi);
+   lineEdit_fermentDate->setMinimumWidth(dpi);
 
    connect(lineEdit_SG, &BtLineEdit::textModified, this, &BrewNoteWidget::updateSG);
    connect(lineEdit_volIntoBK, &BtLineEdit::textModified, this, &BrewNoteWidget::updateVolumeIntoBK_l);
@@ -111,7 +131,7 @@ void BrewNoteWidget::setBrewNote(BrewNote* bNote)
 
    if( bNoteObs != 0 )
       disconnect( bNoteObs, 0, this, 0 );
-   
+
    if ( bNote )
    {
       bNoteObs = bNote;
@@ -259,7 +279,7 @@ void BrewNoteWidget::saveAll()
 {
    if ( ! bNoteObs )
       return;
-   
+
    updateSG();
    updateVolumeIntoBK_l();
    updateStrikeTemp_c();
