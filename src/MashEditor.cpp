@@ -22,6 +22,7 @@
 #include "MashEditor.h"
 #include <QWidget>
 #include <QDebug>
+#include <QScreen>
 #include "mash.h"
 #include "brewtarget.h"
 #include "unit.h"
@@ -31,6 +32,16 @@
 MashEditor::MashEditor(QWidget* parent) : QDialog(parent), mashObs(0)
 {
    setupUi(this);
+
+   //Ui changes needed to help with HiDPI displays
+   int dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+   lineEdit_name->setMinimumWidth(dpi);
+   lineEdit_grainTemp->setMinimumWidth(dpi);
+   lineEdit_spargePh->setMinimumWidth(dpi);
+   lineEdit_spargeTemp->setMinimumWidth(dpi);
+   lineEdit_tunMass->setMinimumWidth(dpi);
+   lineEdit_tunSpHeat->setMinimumWidth(dpi);
+   lineEdit_tunTemp->setMinimumWidth(dpi);
 
    connect(pushButton_fromEquipment, &QAbstractButton::clicked, this, &MashEditor::fromEquipment );
    connect(this, &QDialog::accepted, this, &MashEditor::saveAndClose );
